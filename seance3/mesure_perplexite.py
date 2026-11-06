@@ -14,7 +14,7 @@ from pathlib import Path
 # provoquer un SyntaxWarning sans conséquence, il est masqué ici.
 warnings.filterwarnings("ignore", category=SyntaxWarning)
 
-SEANCE2 = Path(__file__).resolve().parent.parent / "seance2_etudiants"
+SEANCE2 = Path(__file__).resolve().parent.parent / "seance2"
 if not (SEANCE2 / "merges.json").exists():
     sys.exit(f"Introuvable : {SEANCE2 / 'merges.json'}. Le dossier seance3 doit être "
              "à côté du dossier seance2, et merges.json doit y avoir été créé.")

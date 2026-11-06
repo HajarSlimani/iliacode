@@ -17,11 +17,11 @@ D/N et HumanEval viennent du cours.
 
 | candidat | D/N | N | mémoire 2N | tient ? | licence, étiquette | licence, fichier LICENSE | HumanEval | verdict |
 |---|---|---|---|---|---|---|---|---|
-| mistralai/Codestral-22B-v0.1 | non publié | 22 | 44 | | mnpl |  non commerciale |  | écarté, taille |
-| Qwen/Qwen2.5-Coder-3B | 7605 | 3.09 | 6.18 | | qwen-research | recherche seule | |écarté, licence |
-| 01-ai/Yi-Coder-9B |  716|  9| 18|  | apache-2.0 |libre | 53.7 | classé 2e |
-| Qwen/Qwen2.5-Coder-7B | 3092 |7.61  | 15.2 |  |  apache-2.0 | libre | 61.6 | retenu |
-| Qwen/Qwen2.5-Coder-1.5B | 15260 | 1.54 | 3.08 |  | apache-2.0 | libre |  |témoin  |
+| mistralai/Codestral-22B-v0.1 | non publié | 22 | 44 | Non| mnpl |  non commerciale |  | écarté, taille |
+| Qwen/Qwen2.5-Coder-3B | 7605 | 3.09 | 6.18 |Oui | qwen-research | recherche seule | |écarté, licence |
+| 01-ai/Yi-Coder-9B |  716|  9| 18|Oui  | apache-2.0 |libre | 53.7 | classé 2e |
+| Qwen/Qwen2.5-Coder-7B | 3092 |7.61  | 15.2 |  Oui|  apache-2.0 | libre | 61.6 | retenu |
+| Qwen/Qwen2.5-Coder-1.5B | 15260 | 1.54 | 3.08 | Oui | apache-2.0 | libre |  |témoin  |
 
 ## La décision
 
