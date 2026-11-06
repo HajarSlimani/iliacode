@@ -20,7 +20,7 @@ def charger_moteur(nom=MOTEUR_PAR_DEFAUT):
     y en a un, sinon sur le processeur. Rend le couple (modele, tokeniseur).
     nom est le nom du moteur sur Hugging Face ou le chemin d'un dossier
     local qui contient ses fichiers."""
-    
+
     appareil = "cuda" if torch.cuda.is_available() else "cpu"
     format_ = torch.float16 if appareil == "cuda" else torch.float32
     tokeniseur = AutoTokenizer.from_pretrained(nom)
@@ -33,13 +33,13 @@ def charger_moteur(nom=MOTEUR_PAR_DEFAUT):
 def compter_parametres(modele):
     """Le nombre N de paramètres du moteur, la somme, sur toutes ses
     matrices et tous ses vecteurs, du produit de leurs dimensions."""
-    raise NotImplementedError("partie 3 du TP, à compléter")
+    return sum(p.numel() for p in modele.parameters())
 
 
 def memoire_poids(modele):
     """La mémoire des poids en octets, chaque paramètre occupant autant
     d'octets que son format, 2 en FP16, 4 en FP32."""
-    raise NotImplementedError("partie 3 du TP, à compléter")
+    return sum(p.numel() * p.element_size() for p in modele.parameters())
 
 
 def probas_moteur(modele, tokeniseur, texte):
