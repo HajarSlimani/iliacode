@@ -30,8 +30,8 @@ meilleure_configuration = None
 
 random.seed(0)
 
-for r in [4, 8, 16]:
-    for learning_rate in [1e-4, 2e-4, 5e-4]:
+for r in [4, 8]:
+    for learning_rate in [1e-4, 2e-4]:
 
         print(f"\nConfiguration r={r}, lr={learning_rate}")
 
