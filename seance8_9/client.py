@@ -38,3 +38,8 @@ def demander(texte, type_demande, modele="moteur", n_max=400):
     with urllib.request.urlopen(requete, timeout=300) as reponse:
         choix = json.loads(reponse.read())["choices"][0]
     return choix["message"]["content"], choix["finish_reason"] == "stop"
+
+# timeout=300 définit un délai maximal d'attente de 300 secondes (5 minutes) (attend envoi du responce au moteur)
+# choix["finish_reason"] == "stop" On vérifie si la génération s'est terminée avec la raison stop.
+# True si la génération s'est terminée normalement.
+# False si elle s'est terminée pour une autre raison, par exemple parce que la limite de tokens a été atteinte (length).

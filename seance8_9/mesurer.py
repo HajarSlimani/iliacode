@@ -56,20 +56,22 @@ def surprises(modele, texte):
 
 
 if __name__ == "__main__":
-    modele = sys.argv[1]
+    modele = sys.argv[1] # arg de system nb 1
     jeu = json.load(open("jeu_test.json", encoding="utf-8"))
+    # ThreadPoolExecutor est une classe du module concurrent.futures
+    # Il permet de créer un ensemble de threads (fils d'exécution) pour effectuer plusieurs tâches simultanément
     with ThreadPoolExecutor(len(jeu)) as lot:
         sorties = list(lot.map(lambda d: demander(d["demande"], d["type"], modele), jeu))
-
+    # (texte, arrete) reponse et le maniere d'arret de res
     for d, (texte, arrete) in zip(jeu, sorties):
         print(f"--- {d['type']}, {'arrêt seul' if arrete else 'SANS ARRÊT'}\n{d['demande'][:70]}\n{texte[:300]}\n")
 
     reponses = sum(arrete for _, arrete in sorties)
-    juges = [(d, t) for d, (t, _) in zip(jeu, sorties) if d["type"] != "explication"]
+    juges = [(d, t) for d, (t, _) in zip(jeu, sorties) if d["type"] != "explication"] # stocke ceux qui one un type diff de explicqtion ( càd fct et tests)
     justes = sum(juste(d, t) for d, t in juges)
     maisons = sum(arrete and maison(d, t) for d, (t, arrete) in zip(jeu, sorties))
     bits = [b for f in sorted(Path("mis_de_cote").glob("*.py")) for b in surprises(modele, f.read_text(encoding="utf-8"))]
-    L = sum(bits) / len(bits)
+    L = sum(bits) / len(bits) # entropie croise 
 
     print(f"moteur {modele}")
     print(f"  taux de réponses  {reponses}/{len(jeu)} = {reponses / len(jeu):.2f}")
