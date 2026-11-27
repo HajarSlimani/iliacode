@@ -13,7 +13,7 @@ moteur = AutoModelForCausalLM.from_pretrained(MOTEUR, torch_dtype=torch.bfloat16
 moteur.gradient_checkpointing_enable()
 moteur.enable_input_require_grads()
 
-moteur = get_peft_model(moteur, LoraConfig(r=16, target_modules=["q_proj", "v_proj", "o_proj"], task_type="CAUSAL_LM"))
+moteur = get_peft_model(moteur, LoraConfig(r=8, target_modules=["q_proj", "v_proj"], task_type="CAUSAL_LM"))
 entraines = [p for p in moteur.parameters() if p.requires_grad]
 for p in entraines:
     p.data = p.data.float()
