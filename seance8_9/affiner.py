@@ -13,7 +13,10 @@ moteur = AutoModelForCausalLM.from_pretrained(MOTEUR, torch_dtype=torch.bfloat16
 moteur.gradient_checkpointing_enable()
 moteur.enable_input_require_grads()
 
-moteur = get_peft_model(moteur, LoraConfig(r=8, target_modules=["q_proj", "v_proj"], task_type="CAUSAL_LM"))
+# moteur = get_peft_model(moteur, LoraConfig(r=8, target_modules=["q_proj", "v_proj"], task_type="CAUSAL_LM"))
+moteur = get_peft_model(moteur, LoraConfig(
+    r=16, lora_alpha=32, lora_dropout= 0.05,
+    target_modules=["q_proj", "v_proj", "o_proj"],  task_type="CAUSAL_LM"))
 entraines = [p for p in moteur.parameters() if p.requires_grad]
 for p in entraines:
     p.data = p.data.float()
@@ -32,7 +35,7 @@ def exemple(paire):
 paires = json.load(open("paires.json", encoding="utf-8"))
 adam = torch.optim.AdamW(entraines, lr=2e-4)
 random.seed(0)
-for epoque in range(2):
+for epoque in range(3):
     random.shuffle(paires)
     pertes = []
     for paire in paires:
